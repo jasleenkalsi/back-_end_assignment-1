@@ -5,7 +5,7 @@
 -   **Breakpoint Location:** `src/app.ts` 
 -   **Objective:** Investigating why a particular API route is returning a 404 error despite being defined in the Express app.
 
-#### **Debugger Observations**
+#### **Debugger Observations
 -   **Variable States:**
     - `routePath = "/api/v1/health"`
     - `routeHandler = [Function: healthCheckHandler]`
