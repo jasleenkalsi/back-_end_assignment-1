@@ -1,7 +1,8 @@
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJSDoc from 'swagger-jsdoc';
-import healthRouter from './routes/health'; // Import health check router
+import healthRouter from './api/v1/routes/health';
+ // Import health check router
 
 const app = express();
 
