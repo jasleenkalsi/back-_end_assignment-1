@@ -1,19 +1,22 @@
 import { Router } from 'express';
 
-const router = Router();
+const router: Router = Router();
 
-const version = "1.0.0"; // Example API version
-
-// Health Check Route
+/**
+ * @openapi
+ * /api/v1/health:
+ *   get:
+ *     description: Returns the health status of the API.
+ *     responses:
+ *       200:
+ *         description: API is running fine
+ */
 router.get('/health', (req, res) => {
-  const uptime = process.uptime();
-  const timestamp = new Date().toISOString();
-
   res.json({
     status: 'OK',
-    uptime,
-    timestamp,
-    version
+    uptime: process.uptime(),
+    timestamp: new Date(),
+    version: '1.0.0',
   });
 });
 

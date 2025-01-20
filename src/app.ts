@@ -1,10 +1,9 @@
-import express from 'express';
+import express, { Express } from 'express';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJSDoc from 'swagger-jsdoc';
 import healthRouter from './api/v1/routes/health';
- // Import health check router
 
-const app = express();
+const app: Express = express();
 
 // Swagger configuration
 const swaggerOptions: swaggerJSDoc.Options = {
@@ -26,7 +25,7 @@ const swaggerDocs = swaggerJSDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // Example to verify the server works)
-app.get('/', (req, res) => {
+app.get('/health', (req, res) => {
   res.send('Welcome to the API. Visit /api-docs for API documentation.');
 });
 
@@ -42,7 +41,16 @@ app.get('/api/v1/health', (req, res) => {
 app.use('/api/v1', healthRouter);  // Use health check route under '/api/v1'
 
 app.get('/', (req, res) => {
-    res.send('Hello, World!');
-  });
-  
+  res.send('Hello, World!');
+});
+
+// Log that the app is starting
+console.log('App is about to start');
+
+// Start server
+const PORT: string | number = process.env.PORT || 4000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+
 export default app;
